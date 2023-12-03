@@ -10,7 +10,7 @@ const Navbar = () => {
       >
         <p className="blue-gradient_text">CZ</p>
       </Link>
-      <nav className="flex text-lg gap-7 font-medium text-blue-500">
+      <nav className="flex text-lg gap-7 font-medium text-black">
         <Link href={"/about"} className="">
           About
         </Link>
