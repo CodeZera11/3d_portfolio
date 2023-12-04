@@ -7,9 +7,11 @@ import Loader from "./Loader";
 import Sky from "@/models/sky";
 import Bird from "@/models/bird";
 import Plane from "@/models/plane";
+import Popup from "./Popup";
 
 const LandingHero = () => {
   const [isRotating, setIsRotating] = useState(false);
+  const [currentStage, setCurrentStage] = useState(1);
 
   const adjustIslandForScreenSize = () => {
     let screenScale = null;
@@ -46,9 +48,9 @@ const LandingHero = () => {
 
   return (
     <section className="w-full h-screen relative">
-      {/* <div className="absolute top-28 left-0 right-0 z-10 flex items-center justify-center">
-        Popup
-      </div> */}
+      <div className="absolute top-28 left-0 right-0 z-10 flex items-center justify-center">
+        {currentStage && <Popup currentStage={currentStage} />}
+      </div>
 
       <Canvas
         className={`${
@@ -67,8 +69,10 @@ const LandingHero = () => {
             intensity={1}
           />
           <Bird />
-          <Sky />
+          <Sky isRotating={isRotating} />
           <Island
+            currentStage={currentStage}
+            setCurrentStage={setCurrentStage}
             position={isLandPosition}
             scale={isLandScale}
             rotation={isLandRotation}

@@ -18,7 +18,7 @@ import { useFrame, useThree } from "@react-three/fiber";
 
 import islandScene from "@/assets/3d/island.glb";
 
-const Island = ({ isRotating, setIsRotating, ...props }) => {
+const Island = ({ isRotating, setCurrentStage, setIsRotating, ...props }) => {
   const islandRef = useRef();
 
   const { nodes, materials } = useGLTF(islandScene);
