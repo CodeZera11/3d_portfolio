@@ -4,11 +4,11 @@ import {
   VerticalTimeline,
   VerticalTimelineElement,
 } from "react-vertical-timeline-component";
-
 import "react-vertical-timeline-component/style.min.css";
+import Image from "next/image";
 
 import { skills, experiences } from "../../constants";
-import Image from "next/image";
+import CTA from "../../components/CTA";
 const About = () => {
   return (
     <section className="max-container">
@@ -56,32 +56,63 @@ const About = () => {
         </div>
 
         <div className="mt-12 flex">
-          <VerticalTimeline layout="1-column-left">
-            {experiences.map((experience, index) => {
-              return (
-                <VerticalTimelineElement key={index} date={experience.date}>
-                  <div>
-                    <h3 className="text-black text-xl font-semibold">
-                      {experience.title}
-                    </h3>
-                    <p
-                      className="text-black font-medium font-base"
-                      style={{ margin: 0 }}
-                    >
-                      {experience.company_name}
-                    </p>
+          <VerticalTimeline>
+            {experiences.map((experience, index) => (
+              <VerticalTimelineElement
+                visible
+                key={index}
+                date={experience.date}
+                icon={
+                  <div className="flex items-center justify-center h-full">
+                    <Image
+                      src={experience.icon}
+                      alt={experience.company_name}
+                      width={1000}
+                      height={1000}
+                      className="w-[60%] h-[60%] object-contain"
+                    />
                   </div>
-                  <ul className="my-5 list-disc ml-5 space-y-2">
-                    {experience.points.map((point, i) => {
-                      return <li key={i}>{point}</li>;
-                    })}
-                  </ul>
-                </VerticalTimelineElement>
-              );
-            })}
+                }
+                iconStyle={{ background: experience.iconBg }}
+                contentStyle={{
+                  borderBottom: "8px",
+                  borderStyle: "solid",
+                  borderBottomColor: experience.iconBg,
+                  boxShadow: "none",
+                }}
+              >
+                <div>
+                  <h3 className="text-black text-xl font-semibold">
+                    {experience.title}
+                  </h3>
+                  <p
+                    className="text-black font-medium font-base"
+                    style={{ margin: 0 }}
+                  >
+                    {experience.company_name}
+                  </p>
+                </div>
+                <ul className="my-5 list-disc ml-5 space-y-2">
+                  {experience.points.map((point, i) => {
+                    return (
+                      <li
+                        key={i}
+                        className="text-black/50 font-normal pl-1 text-sm"
+                      >
+                        {point}
+                      </li>
+                    );
+                  })}
+                </ul>
+              </VerticalTimelineElement>
+            ))}
           </VerticalTimeline>
         </div>
       </div>
+
+      <hr className="border-slate-200" />
+
+      <CTA />
     </section>
   );
 };
