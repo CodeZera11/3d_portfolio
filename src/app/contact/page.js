@@ -5,11 +5,15 @@ import emailjs from "@emailjs/browser";
 import { Canvas } from "@react-three/fiber";
 import Fox from "../../models/fox";
 import Loader from "../../components/Loader";
+import useAlert from "../../hooks/useAlert";
+import Alert from "../../components/Alert";
 
 const Contact = () => {
   const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [currentAnimation, setCurrentAnimation] = useState("idle");
+
+  const { alert, showAlert, hideAlert } = useAlert();
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -40,14 +44,21 @@ const Contact = () => {
         },
         process.env.NEXT_PUBLIC_KEY
       );
+      showAlert({
+        show: true,
+        text: "I'll contact your very soon!",
+        type: "success",
+      });
 
       setTimeout(() => {
+        hideAlert();
         setCurrentAnimation("idle");
         setForm({ name: "", message: "", email: "" });
       }, 3000);
     } catch (error) {
       setCurrentAnimation("idle");
       console.log({ error });
+      showAlert({ text: "Oops! Didn't got your message", type: "danger" });
     } finally {
       setLoading(false);
     }
@@ -55,6 +66,8 @@ const Contact = () => {
 
   return (
     <section className="relative flex flex-col lg:flex-row max-container">
+      {alert.show && <Alert {...alert} />}
+      <Alert text={"fdjasfhldsk"} />
       <div className="flex-1 min-w-[50%] flex flex-col">
         <h1 className="head-text">Get in Touch</h1>
 
