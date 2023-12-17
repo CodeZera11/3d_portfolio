@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import BirdScene from "@/assets/3d/bird.glb";
+import BirdScene from "../assets/3d/bird.glb";
 import { useAnimations, useGLTF } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 

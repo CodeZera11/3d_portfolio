@@ -1,12 +1,12 @@
 "use client";
 
-import Island from "@/models/island";
+import Island from "../models/island";
 import { Canvas } from "@react-three/fiber";
 import React, { Suspense, useState } from "react";
 import Loader from "./Loader";
-import Sky from "@/models/sky";
-import Bird from "@/models/bird";
-import Plane from "@/models/plane";
+import Sky from "../models/sky";
+import Bird from "../models/bird";
+import Plane from "../models/plane";
 import Popup from "./Popup";
 
 const LandingHero = () => {

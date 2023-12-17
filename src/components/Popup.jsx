@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { arrow } from "@/assets/icons";
+import { arrow } from "../assets/icons";
 import Image from "next/image";
 const InfoBox = ({ text, link, btn_text }) => {
   return (

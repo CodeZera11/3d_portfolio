@@ -1,5 +1,5 @@
 import { useGLTF } from "@react-three/drei";
-import SkyScene from "@/assets/3d/sky.glb";
+import SkyScene from "../assets/3d/sky.glb";
 import { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 
